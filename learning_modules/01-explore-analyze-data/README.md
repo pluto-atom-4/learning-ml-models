@@ -6,9 +6,9 @@ This folder holds learning materials and Jupyter notebooks for exercises related
 
 Notebooks (exercises):
 
+- Explore_and_Analyze_Data_with_Python_Solution.ipynb — NumPy and DataFrames are the workhorses of data science in Python
+- Exercise_Visualize_data.ipynb — Data visualization techniques
 - Exercise_Train_and_evaluate_a_regression_model.ipynb — Train and evaluate a regression model
-- Exercise_Experiment_with_more_powerful_regression_models.ipynb — Experiment with RandomForest/GBM/XGBoost
-- Exercise_Optimize_and_save_models.ipynb — Hyperparameter tuning and model persistence
 
 Notes
 - Use Git Bash to create/activate the virtual environment (see project root `.github/copilot.yaml`).
