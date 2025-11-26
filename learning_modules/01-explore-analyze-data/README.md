@@ -8,7 +8,7 @@ Notebooks (exercises):
 
 - Explore_and_Analyze_Data_with_Python_Solution.ipynb — NumPy and DataFrames are the workhorses of data science in Python
 - Exercise_Visualize_data.ipynb — Data visualization techniques
-- Exercise_Train_and_evaluate_a_regression_model.ipynb — Train and evaluate a regression model
+- Explore_data_distributions_and_comparisons.ipynb — To explore data distributions and techniques for comparing data with Python.
 
 Notes
 - Use Git Bash to create/activate the virtual environment (see project root `.github/copilot.yaml`).
