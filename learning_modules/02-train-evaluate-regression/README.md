@@ -7,7 +7,7 @@ This folder holds learning materials and Jupyter notebooks for exercises related
 Notebooks (exercises):
 
 - Get_started_with_regression.ipynb — Get started with regression
-- Exercise_Perform_classification_with_alternative_metrics.ipynb — Explore precision/recall/F1 and class imbalance techniques
+- Experiment_with_regression_models.ipynb — To train and evaluate regression models
 - Exercise_Train_and_evaluate_multiclass_classification_models.ipynb — Work on multiclass classification strategies
 
 Notes
