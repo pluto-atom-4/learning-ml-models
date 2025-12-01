@@ -8,7 +8,7 @@ Notebooks (exercises):
 
 - Get_started_with_regression.ipynb — Get started with regression
 - Experiment_with_regression_models.ipynb — To train and evaluate regression models
-- Exercise_Train_and_evaluate_multiclass_classification_models.ipynb — Work on multiclass classification strategies
+- Optimize_regression_models.ipynb — To improve the performance of the models, including Lasso, Random forest, and Ensemble methods.
 
 Notes
 - Use Git Bash to activate the `.venv` and run `jupyter lab`.
