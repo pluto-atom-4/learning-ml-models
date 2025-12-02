@@ -6,7 +6,7 @@ This folder holds learning materials and Jupyter notebooks for exercises related
 
 Notebooks (exercises):
 
-- Exercise_Train_and_evaluate_a_clustering_model.ipynb — Apply clustering algorithms and evaluate results
+- Get_started_with_classification.ipynb — Apply clustering algorithms and evaluate results
 - Exercise_Perform_classification_with_alternative_metrics.ipynb — Explore metrics and evaluation strategies
 - Exercise_Train_and_evaluate_multiclass_classification_models.ipynb — Practice multiclass classification strategies
 
