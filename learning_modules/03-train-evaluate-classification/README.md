@@ -8,7 +8,7 @@ Notebooks (exercises):
 
 - Get_started_with_classification.ipynb — Apply clustering algorithms and evaluate results
 - Optimize_classification_models.ipynb — To optimize a binary classification model
-- Exercise_Train_and_evaluate_multiclass_classification_models.ipynb — Practice multiclass classification strategies
+- Train_a_multiclass_classification_model.ipynb — To optimize a binary classification model
 
 Notes
 - Use Git Bash to activate the `.venv` and run `jupyter lab`.
