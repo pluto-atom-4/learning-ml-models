@@ -6,7 +6,7 @@ This folder holds learning materials and Jupyter notebooks for deep learning exe
 
 Notebooks (exercises):
 
-- Exercise_Train_a_deep_neural_network.ipynb — Build and train a deep neural network (TensorFlow / PyTorch)
+- Create_a_neural_network.ipynb — Build and train a deep neural network
 
 Notes
 - Use Git Bash to activate the `.venv` and run `jupyter lab`.
