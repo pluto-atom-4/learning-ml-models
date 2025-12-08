@@ -6,7 +6,7 @@ This folder holds learning materials and Jupyter notebooks for clustering exerci
 
 Notebooks (exercises):
 
-- Exercise_Train_and_evaluate_a_clustering_model.ipynb — Apply clustering algorithms and evaluate results
+- Get started with clustering.ipynb — To explore clustering and estimate the number of clusters for a given dataset with Python.
 - Exercise_Train_and_evaluate_advanced_clustering_models.ipynb — Explore DBSCAN, spectral clustering, and others
 
 Notes
