@@ -7,7 +7,7 @@ This folder holds learning materials and Jupyter notebooks for clustering exerci
 Notebooks (exercises):
 
 - Get started with clustering.ipynb — To explore clustering and estimate the number of clusters for a given dataset with Python.
-- Exercise_Train_and_evaluate_advanced_clustering_models.ipynb — Explore DBSCAN, spectral clustering, and others
+- Create_clustering_models.ipynb — To train and evaluate clustering models
 
 Notes
 - Use Git Bash to activate the `.venv` and run `jupyter lab`.
