@@ -1,16 +1,19 @@
 # GitHub Copilot Configuration for learning-ml-models
 
-**Date:** December 8, 2025  
+**Date:** December 9, 2025 (Last Updated)  
 **Project:** learning-ml-models  
-**Status:** Migrated from YAML to Markdown format
+**Status:** Markdown Format – Enhanced & Optimized  
+**Environment:** Git Bash on Windows
 
 ---
 
 ## 🎯 Quick Instructions for Copilot
 
-> **PRIMARY INSTRUCTION:** When you ask me a question, I will respond by wrapping the entire response in a fenced code block labeled `markdown`. This prevents the chat pane from rendering the content, keeping it raw so you can copy-paste directly into Jupyter.
+> ### ⚡ PRIMARY INSTRUCTION
+> 
+> **ALWAYS wrap your entire response in a fenced code block labeled `markdown`.** This prevents the chat pane from rendering, keeping the content **raw and unrendered** so I can copy-paste directly into Jupyter notebooks.
 >
-> **Format Example:**
+> #### Format Example:
 > ````markdown
 > # Your markdown content here
 > 
@@ -23,17 +26,27 @@
 > ```
 > ````
 >
-> ✨ This means you can copy the entire response (including the outer triple backticks) and paste it into your Jupyter **Markdown** cell without any reformatting!
+> ✨ **Result:** I copy the entire block (including outer fence) → paste into Jupyter **Markdown** cell → rendered immediately. No chat pane rendering noise!
 
-### Default Output Behavior
+### Default Output Behavior (2 Documents Maximum)
 
-> **IMPORTANT:** Generate **only 2 documents** by default:
-> 1. **Plan Document** – Multi-step breakdown of the task/question
-> 2. **Summary Document** – Key findings, results, or conclusions
+> ### 📋 RULE: Generate **EXACTLY 2 documents** by default
 >
-> Generate additional documents (guides, examples, references, etc.) **only when you explicitly request them** (e.g., "Also create a quick reference guide").
+> **Default Documents:**
+> 1. **Plan Document** – Structured breakdown with clear steps/methodology
+> 2. **Summary Document** – Key findings, results, conclusions, and actionable takeaways
 >
-> **Exception:** If the task naturally requires more than 2 documents to be complete and useful, use your judgment to include them, but prioritize keeping output concise.
+> **Generate Additional Documents ONLY IF:**
+> - You explicitly request them (e.g., "Also create a quick reference guide")
+> - The task inherently requires more docs to be complete (rare cases)
+> - Never assume—always ask implicitly through your request
+>
+> **Examples of valid additional requests:**
+> - "Also create a quick reference guide"
+> - "Generate an examples document too"
+> - "Include a troubleshooting guide as well"
+>
+> **When in doubt:** Stick to Plan + Summary only. Conciseness is valued.
 
 ---
 
@@ -141,34 +154,43 @@ All Copilot-generated markdown files should be saved to:
 generated/docs-copilot/
 ```
 
-### Default Output Documents
+### Document Naming Convention
 
-By default, generate **only 2 documents** unless specifically requested:
-
-1. **Plan Document:** `{{YYYYMMDD}}-plan-{{slug}}.md`
-   - Multi-step breakdown of the task/question
-   - Clear step-by-step approach
-   - Example: `20251208-plan-data-analysis.md`
-
-2. **Summary Document:** `{{YYYYMMDD}}-summary-{{slug}}.md`
-   - Key findings, results, or conclusions
-   - Actionable takeaways
-   - Example: `20251208-summary-data-analysis.md`
-
-### Filename Template
+Use the following filename template for all generated documents:
 
 ```
 {{YYYYMMDD}}-{{document-type}}-{{slug}}.md
 ```
 
+**Template Variables:**
+- `{{YYYYMMDD}}` – Current date (e.g., `20251209`)
+- `{{document-type}}` – One of: `plan`, `summary`, `guide`, `examples`, `troubleshooting`, `reference`
+- `{{slug}}` – URL-safe descriptive slug (e.g., `data-analysis`, `neural-networks`)
+
+### Default Documents (Plan & Summary Only)
+
+By default, generate **only 2 documents**:
+
+1. **Plan Document:** `{{YYYYMMDD}}-plan-{{slug}}.md`
+   - **Purpose:** Multi-step breakdown of the task/question
+   - **Content:** Clear methodology, step-by-step approach, key considerations
+   - **Example:** `20251209-plan-data-analysis.md`
+
+2. **Summary Document:** `{{YYYYMMDD}}-summary-{{slug}}.md`
+   - **Purpose:** Key findings, results, conclusions, and actionable takeaways
+   - **Content:** Main results, insights, recommendations, next steps
+   - **Example:** `20251209-summary-data-analysis.md`
+
 ### Generate Additional Documents Only When Requested
 
-If you explicitly request additional documents (e.g., "Also create a quick reference guide"), then generate them with appropriate naming:
-- `{{YYYYMMDD}}-guide-{{slug}}.md`
-- `{{YYYYMMDD}}-examples-{{slug}}.md`
-- `{{YYYYMMDD}}-troubleshooting-{{slug}}.md`
+If you explicitly request additional documents, generate them with appropriate naming:
 
-> **Note:** Unless you say "Also create..." or "Generate additional...", stick to Plan + Summary only.
+- `{{YYYYMMDD}}-guide-{{slug}}.md` – Step-by-step guides or tutorials
+- `{{YYYYMMDD}}-examples-{{slug}}.md` – Code examples and sample implementations
+- `{{YYYYMMDD}}-reference-{{slug}}.md` – Quick reference cards or checklists
+- `{{YYYYMMDD}}-troubleshooting-{{slug}}.md` – Common issues and solutions
+
+> **Rule:** Unless you explicitly say "Also create..." or "Generate...", stick to Plan + Summary only. This keeps documentation concise and focused.
 
 ---
 
@@ -229,13 +251,11 @@ jupyter lab --port 8888 --no-browser
 
 ---
 
-## Copilot Output Instructions
+## Copilot Response Format Instructions
 
 > 🎯 **PRIMARY INSTRUCTION:** Wrap ALL responses in a fenced code block labeled `markdown`. This prevents chat rendering and provides raw, copy-paste-ready content for Jupyter notebooks.
 
-### Response Format Rules
-
-#### 0. Wrap Everything in a Markdown Code Block
+### Rule 1: Always Wrap in Outer Markdown Code Block
 
 **ALWAYS** wrap your entire response in triple backticks with `markdown` label:
 
@@ -248,12 +268,17 @@ See rules below for how to format markdown, Python, and bash content.
 ```
 ````
 
-This keeps the chat pane from rendering your response, allowing the user to copy the entire block directly into a Jupyter **Markdown** cell.
+**Why?** This keeps the chat pane from rendering your response, allowing direct copy-paste into Jupyter **Markdown** cells without reformatting.
 
-#### 1. For Markdown Content (Default)
+### Rule 2: Nested Content Formatting
 
-**DO:** Inside the outer markdown block, provide raw markdown content:
+Inside the outer markdown block, use appropriate nested code fences for different content types:
 
+#### For Markdown Content (Default)
+
+**✅ DO:** Provide raw markdown inside the outer fence:
+
+````markdown
 ```markdown
 # My Heading
 
@@ -261,77 +286,109 @@ This is regular markdown content with **bold** and *italic* text.
 
 - List item 1
 - List item 2
-```
 
-**DON'T:** Don't add extra code block wrappers around markdown (the outer fence is enough):
-
-```markdown
-```
-# Incorrect nesting
-```
-```
-
-#### 2. For Python Code Blocks
-
-When providing Python code meant for Jupyter notebooks, format it as a nested code block inside the markdown wrapper:
-
-````markdown
-```markdown
-Here is some Python code:
-
-```python
-import pandas as pd
-
-def example_function():
-    return "Hello, World!"
-```
-
-Then the user can copy this code block and paste it into a Jupyter **Code** cell.
+| Column A | Column B |
+|----------|----------|
+| Value 1  | Value 2  |
 ```
 ````
 
-#### 3. For Bash/Shell Commands
+**❌ DON'T:** Don't use extra nested markdown fences; the outer fence is sufficient.
 
-When providing shell commands, format them as a nested code block inside the markdown wrapper:
+#### For Python Code Blocks
+
+When providing Python code for Jupyter, use nested `python` code block:
 
 ````markdown
 ```markdown
-Here are the bash commands:
+Here is the Python code:
+
+```python
+import pandas as pd
+import numpy as np
+
+def calculate_mean(data):
+    return np.mean(data)
+
+df = pd.read_csv('data.csv')
+print(df.head())
+```
+
+Run this code in a Jupyter **Code** cell.
+```
+````
+
+#### For Bash/Shell Commands
+
+When providing shell commands, use nested `bash` code block:
+
+````markdown
+```markdown
+Run these commands in your Git Bash terminal:
 
 ```bash
 python -m venv .venv
 source .venv/Scripts/activate
-pip install -e .
+pip install -e ".[dev]"
+jupyter lab --port 8888 --no-browser
 ```
-
-Run these in your Git Bash terminal.
-```
-````
-
-#### 4. For Jupyter Notebook Cells
-
-**Markdown Cell:** The user copies the entire outer markdown block (including outer fence) and pastes into a Jupyter **Markdown** cell:
-
-````markdown
-```markdown
-# Data Analysis Results
-
-Key findings:
-- Point 1
-- Point 2
-
-| Column | Value |
-|--------|-------|
-| A      | 1     |
-| B      | 2     |
 ```
 ````
 
-**Code Cell:** The user extracts the inner Python code block (or copies it with backticks) and pastes into a Jupyter **Code** cell:
+#### For Configuration Files (YAML, JSON, TOML)
+
+Use appropriate nested language block:
 
 ````markdown
 ```markdown
-Here is the code to run:
+Here is the YAML configuration:
+
+```yaml
+dependencies:
+  - numpy
+  - pandas
+  - scikit-learn
+```
+```
+````
+
+### Rule 3: Copy-Paste Workflow for Jupyter
+
+#### For Markdown Cells:
+1. Copilot provides response wrapped in outer `markdown` code block
+2. Create a new **Markdown** cell in Jupyter
+3. Copy the entire outer block (including the outer fence with backticks)
+4. Paste into the Markdown cell
+5. Run the cell to render
+
+#### For Code Cells:
+1. Copilot provides response with nested Python code block
+2. Find the inner ```python...``` block
+3. Create a new **Code** cell in Jupyter
+4. Copy-paste just the Python code (with or without inner backticks)
+5. Run the cell to execute
+
+### Rule 4: Response Type Summary Table
+
+| Content Type | Outer Wrapper | Inner Format | Jupyter Destination | Paste Method |
+|------------|---------------|--------------|---------------------|--------------|
+| **Markdown text** | ✅ `markdown` fence | Raw text | **Markdown** cell | Entire outer block |
+| **Python code** | ✅ `markdown` fence | ```python block | **Code** cell | Inner code only |
+| **Shell commands** | ✅ `markdown` fence | ```bash block | **Code** cell | Inner commands |
+| **Configuration** | ✅ `markdown` fence | ```yaml/json block | **Markdown** or **Code** | As-is |
+
+### Rule 5: Special Cases
+
+#### Multiple Code Blocks in One Response
+If providing multiple code blocks (e.g., Step 1, Step 2, Step 3), nest them all inside the same outer markdown fence:
+
+````markdown
+```markdown
+# Implementation Steps
+
+**Step 1: Setup**
+
+```bash
 
 ```python
 import pandas as pd
@@ -377,11 +434,13 @@ print(df.head())
 ```
 learning-ml-models/
 ├── .github/
-│   └── copilot.yaml                 # Original YAML configuration
+│   └── copilot-instructions.md      # This file (Markdown format)
 ├── generated/
 │   ├── docs-copilot/                # Output directory for generated docs
-│   ├── data/raw/                    # Raw datasets
-│   └── models/                      # Trained models
+│   ├── data/
+│   │   └── raw/                     # Raw datasets (CSV, etc.)
+│   ├── images/                      # Generated visualizations
+│   └── models/                      # Trained ML models (PKL, etc.)
 ├── learning_modules/
 │   ├── 01-explore-analyze-data/
 │   ├── 02-train-evaluate-regression/
@@ -389,9 +448,14 @@ learning-ml-models/
 │   ├── 04-train-evaluate-clustering/
 │   └── 05-train-evaluate-deep-learning/
 ├── scripts/
+│   ├── setup.sh
+│   ├── repair_notebooks.py
+│   └── smoke_test_pytorch.py
 ├── src/
+│   └── learning_ml_models.egg-info/
 ├── pyproject.toml
-└── README.md
+├── README.md
+└── .venv/                           # Virtual environment (git-ignored)
 ```
 
 ---
@@ -405,6 +469,7 @@ learning-ml-models/
 
 ---
 
-**Last Updated:** December 8, 2025  
-**Format Version:** Markdown v1.0
+**Last Updated:** December 9, 2025 (Enhanced & Optimized)  
+**Format Version:** Markdown v2.0  
+**Git Bash on Windows:** ✅ Verified
 
