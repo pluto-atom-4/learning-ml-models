@@ -1,9 +1,10 @@
 # GitHub Copilot Configuration for learning-ml-models
 
-**Date:** December 9, 2025 (Last Updated)  
+**Date:** December 13, 2025 (Last Updated)  
 **Project:** learning-ml-models  
 **Status:** Markdown Format – Enhanced & Optimized  
-**Environment:** Git Bash on Windows
+**Environment:** Git Bash on Windows  
+**Version:** 2.1 – Added `machine_learning` package structure (PEP 517/518)
 
 ---
 
@@ -349,7 +350,6 @@ dependencies:
   - pandas
   - scikit-learn
 ```
-```
 ````
 
 ### Rule 3: Copy-Paste Workflow for Jupyter
@@ -434,7 +434,8 @@ print(df.head())
 ```
 learning-ml-models/
 ├── .github/
-│   └── copilot-instructions.md      # This file (Markdown format)
+│   └── copilot-instructions.md      # This file (Markdown format - Enhanced & Optimized)
+├── benchmarks/                       # Performance benchmarks
 ├── generated/
 │   ├── docs-copilot/                # Output directory for generated docs
 │   ├── data/
@@ -452,10 +453,13 @@ learning-ml-models/
 │   ├── repair_notebooks.py
 │   └── smoke_test_pytorch.py
 ├── src/
+│   ├── machine_learning/             # Core ML package (PEP 517/518 compliant)
+│   │   └── __init__.py
 │   └── learning_ml_models.egg-info/
-├── pyproject.toml
+├── tests/
+├── pyproject.toml                    # PEP 517/518 configuration
 ├── README.md
-└── .venv/                           # Virtual environment (git-ignored)
+└── .venv/                            # Virtual environment (git-ignored)
 ```
 
 ---
@@ -469,7 +473,6 @@ learning-ml-models/
 
 ---
 
-**Last Updated:** December 9, 2025 (Enhanced & Optimized)  
+**Last Updated:** December 13, 2025 (Enhanced & Optimized)  
 **Format Version:** Markdown v2.0  
 **Git Bash on Windows:** ✅ Verified
-

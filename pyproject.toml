@@ -10,7 +10,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "learning-ml-models"
 version = "0.1.0"
-description = "Matrix operations and visualization with pytest"
+description = "Learning machine learning models with educational implementations and scikit-learn comparisons"
 authors = [
     { name = "Akai Kaede", email = "it.scope@gmail.com" }
 ]
@@ -64,4 +64,4 @@ extend-ignore = ["E203", "W503", "E501"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["*"]
+include = ["machine_learning*"]
