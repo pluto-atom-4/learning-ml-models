@@ -27,7 +27,7 @@ def split_data(df, test_size=0.2, random_state=42):
     return train_test_split(X, y, test_size=test_size, random_state=random_state)
 
 
-def fit_knn(X_train, y_train, k=5):
+def fit_knn(X_train, y_train, k=20):
     model = KNeighborsClassifier(n_neighbors=k)
     model.fit(X_train, y_train)
     return model

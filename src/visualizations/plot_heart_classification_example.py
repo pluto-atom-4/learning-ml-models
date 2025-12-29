@@ -12,7 +12,7 @@ from machine_learning.heart_classification import (
     fit_logistic,
     evaluate_model,
 )
-from visualizations.plot_heart_classification import plot_classification_results
+from visualizations.plot_heart_classification import plot_overlapped_classification_results, plot_smooth_decision_boundary, plot_overlapped_smooth_boundaries
 
 
 def main():
@@ -32,8 +32,8 @@ def main():
     print(f"Validation set size: {len(X_val)}\n")
 
     # Train models
-    print("Training k-NN classifier (k=5)...")
-    knn = fit_knn(X_train, y_train, k=5)
+    print("Training k-NN classifier (k=20)...")
+    knn = fit_knn(X_train, y_train, k=20)
 
     print("Training Logistic Regression classifier...")
     log = fit_logistic(X_train, y_train)
@@ -51,13 +51,34 @@ def main():
     print(f"Logistic Accuracies   - Train: {train_log:.4f}, Val: {val_log:.4f}")
     print("=" * 50 + "\n")
 
-    # Generate predictions and visualize results
-    print("Generating predictions and visualization...")
+    # Generate predictions and probabilities
+    print("Generating predictions and probabilities...")
     knn_pred = knn.predict(X_val)
     log_pred = log.predict(X_val)
 
-    plot_classification_results(X_train, y_train, X_val, knn_pred, log_pred)
-    print("Visualization complete!")
+    # Get probability estimates for each class
+    knn_proba = knn.predict_proba(X_val)
+    log_proba = log.predict_proba(X_val)
+
+    print(f"kNN prediction samples (first 5): {knn_pred[:5]}")
+    print(f"kNN probability samples (first 5):\n{knn_proba[:5]}")
+    print(f"Logistic prediction samples (first 5): {log_pred[:5]}")
+    print(f"Logistic probability samples (first 5):\n{log_proba[:5]}\n")
+
+    # Visualize all results in one overlapped canvas
+    print("Generating overlapped multi-layer visualization with all plots...")
+    plot_overlapped_classification_results(X_train, y_train, X_val, y_val, knn_pred, log_pred, knn_proba, log_proba)
+    print("Overlapped visualization complete!")
+
+    # Visualize smooth decision boundaries and probability curves
+    print("\nGenerating smooth decision boundary visualization with linspace...")
+    plot_smooth_decision_boundary(X_train, y_train, X_val, y_val, knn, log)
+    print("Smooth decision boundary visualization complete!")
+
+    # Visualize overlapped smooth boundaries with linspace dummy data
+    print("\nGenerating overlapped smooth boundaries visualization with linspace...")
+    plot_overlapped_smooth_boundaries(X_train, y_train, X_val, y_val, knn, log)
+    print("Overlapped smooth boundaries visualization complete!")
 
 
 if __name__ == "__main__":
