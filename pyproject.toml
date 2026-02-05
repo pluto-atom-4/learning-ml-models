@@ -14,6 +14,7 @@ description = "Learning machine learning models with educational implementations
 authors = [
     { name = "Akai Kaede", email = "it.scope@gmail.com" }
 ]
+requires-python = ">=3.11"
 # Pinned runtime dependencies - Updated for Python 3.14 compatibility
 dependencies = [
     "numpy>=1.26.0,<3.0.0",
