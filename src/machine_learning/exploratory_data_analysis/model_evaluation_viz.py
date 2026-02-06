@@ -12,7 +12,7 @@ def plot_confusion_matrix(y_test, y_pred, title="Confusion Matrix: COVID-19 Hosp
         y_pred: Predicted target values
         title (str): Title for the plot
         display_labels (list): Labels for the confusion matrix axes (default: ['No Urgency', 'High Urgency'])
-        fig size (tuple): Figure size in inches (default: (8, 6))
+        figsize (tuple): Figure size in inches (default: (8, 6))
         cmap (str): Colormap for the heatmap (default: 'Blues')
 
     Returns:
@@ -72,7 +72,7 @@ def save_confusion_matrix_plot(y_test, y_pred, filepath, title="Confusion Matrix
         dpi (int): DPI for saved image (default: 300)
 
     Returns:
-        tuple: (fig, ax, cm) – Figure object, axes object, and confusion matrix
+        np.ndarray: The confusion matrix array
     """
     fig, ax, cm = plot_confusion_matrix(y_test, y_pred, title=title,
                                        display_labels=display_labels,
@@ -80,4 +80,4 @@ def save_confusion_matrix_plot(y_test, y_pred, filepath, title="Confusion Matrix
     plt.savefig(filepath, dpi=dpi, bbox_inches='tight')
     plt.close(fig)
     print(f"Plot saved to: {filepath}")
-    return fig, ax, cm
+    return cm

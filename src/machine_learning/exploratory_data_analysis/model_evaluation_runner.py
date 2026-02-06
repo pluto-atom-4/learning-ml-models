@@ -1,7 +1,17 @@
 from sklearn.neighbors import KNeighborsClassifier
 
-from model_evaluation import (    load_and_prepare_datasets, report_results )
-from model_evaluation_viz import show_confusion_matrix_plot
+#from model_evaluation import (    load_and_prepare_datasets, report_results )
+#from model_evaluation_viz import show_confusion_matrix_plot
+
+try:
+    # When executed as part of the package
+    from .model_evaluation import load_and_prepare_datasets, report_results
+    from .model_evaluation_viz import show_confusion_matrix_plot
+except ImportError:
+    # When executed directly: python model_evaluation_runner.py
+    from machine_learning.exploratory_data_analysis.model_evaluation import load_and_prepare_datasets, report_results
+    from machine_learning.exploratory_data_analysis.model_evaluation_viz import show_confusion_matrix_plot
+
 
 def report_and_visualize_results(y_test, y_pred, show_plot=True):
     """
@@ -21,9 +31,9 @@ def report_and_visualize_results(y_test, y_pred, show_plot=True):
 
 def run_prediction_pipeline():
     """
-    Runner wrapper for the kNN prediction pipeline.
-    Delegates dataset loading, model training, and result reporting to model_evaluation module.
+    Executes the full prediction pipeline: data loading, model training, prediction, and result reporting/visualization.
     """
+
     X_train, y_train, X_test, y_test = load_and_prepare_datasets()
     if X_train is None:
         return
