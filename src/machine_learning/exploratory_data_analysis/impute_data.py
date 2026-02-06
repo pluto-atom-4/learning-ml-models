@@ -1,16 +1,11 @@
 import pandas as pd
-from pathlib import Path
 from sklearn.impute import KNNImputer
 
+from dataset_utils import get_absolute_path
 
 def load_and_impute(file_path="covid.csv"):
     # Load dataset
-    # Get absolute path to the sample resume file
-    root_dir = Path(__file__).parent.parent.parent.parent
-    #root_dir = script_dir.parent.parent.parent
-    abs_file_path = root_dir / "generated" / "data" / "raw" / file_path
-    print(abs_file_path)
-    df = pd.read_csv(abs_file_path)
+    df = pd.read_csv(get_absolute_path(file_path))
 
     # Check for missing values
     missing_rows = df.isnull().any(axis=1).sum()
