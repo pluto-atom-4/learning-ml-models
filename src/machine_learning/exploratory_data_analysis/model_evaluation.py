@@ -1,7 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 
-from .dataset_utils import get_absolute_path
+try:
+    # When executed as part of the package
+    from .dataset_utils import get_absolute_path
+except ImportError:  # pragma: no cover - fallback for direct execution
+    # When executed directly: python model_evaluation.py
+    from machine_learning.exploratory_data_analysis.dataset_utils import get_absolute_path
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import (
