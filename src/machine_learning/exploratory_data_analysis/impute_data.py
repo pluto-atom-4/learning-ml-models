@@ -1,7 +1,7 @@
 import pandas as pd
 from sklearn.impute import KNNImputer
 
-from .dataset_utils import get_absolute_path
+from dataset_utils import get_absolute_path
 
 def load_and_impute(file_path="covid.csv"):
     # Load dataset
