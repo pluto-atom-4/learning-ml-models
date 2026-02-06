@@ -9,7 +9,7 @@ from sklearn.metrics import (
     ConfusionMatrixDisplay
 )
 
-from dataset_utils import get_absolute_path
+from .dataset_utils import get_absolute_path
 
 
 def engineer_features(df):
