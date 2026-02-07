@@ -1,19 +1,14 @@
 import pandas as pd
-import matplotlib.pyplot as plt
 
 try:
-    # When executed as part of the package
     from .dataset_utils import get_absolute_path
-except ImportError:  # pragma: no cover - fallback for direct execution
-    # When executed directly: python model_evaluation.py
+except ImportError:
     from machine_learning.exploratory_data_analysis.dataset_utils import get_absolute_path
 
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
-    classification_report,
-    ConfusionMatrixDisplay
+    classification_report
 )
 
 def engineer_features(df):
@@ -23,53 +18,51 @@ def engineer_features(df):
     df['symptom_score'] = df[symptom_cols].sum(axis=1)
     return df
 
-def run_prediction_pipeline():
-    # 1. Load Datasets
+def load_and_prepare_datasets():
+    """
+    Load train/test datasets, apply feature engineering, and prepare feature/target splits.
+
+    Returns:
+        tuple: (X_train, y_train, X_test, y_test) or (None, None, None, None) on error
+    """
     try:
         train_df = pd.read_csv(get_absolute_path("covid_train.csv"))
         test_df = pd.read_csv(get_absolute_path("covid_test.csv"))
     except FileNotFoundError:
         print("Error: CSV files not found. Please run the data prep scripts first.")
-        return
+        return None, None, None, None
 
-    # 2. Apply Feature Engineering
+    # 1. Apply Feature Engineering
     train_df = engineer_features(train_df)
     test_df = engineer_features(test_df)
 
-    # 3. Define Predictors and Response
+    # 2. Define Predictors and Response
     X_train = train_df.drop(columns=['Urgency'])
     y_train = train_df['Urgency']
     X_test = test_df.drop(columns=['Urgency'])
     y_test = test_df['Urgency']
 
-    # 4. Initialize and Fit kNN (using k=5 as a baseline)
-    knn = KNeighborsClassifier(n_neighbors=5)
-    knn.fit(X_train, y_train)
+    return X_train, y_train, X_test, y_test
 
-    # 5. Predict
-    y_pred = knn.predict(X_test)
+def report_results(y_test, y_pred):
+    """
+    Output classification report and confusion matrix metrics (text-based only).
 
-    # 6. Evaluation: Accuracy Score
+    Args:
+        y_test: Actual target values
+        y_pred: Predicted target values
+    """
+    # 1. Evaluation: Accuracy Score
     acc = accuracy_score(y_test, y_pred)
     print(f"--- Model Results ---")
     print(f"Overall Accuracy: {acc:.2%}\n")
 
-    # 7. Evaluation: Classification Report
+    # 2. Evaluation: Classification Report
     # Shows Precision, Recall, and F1-Score for both classes
     print("--- Classification Report ---")
     print(classification_report(y_test, y_pred, target_names=['No Urgency (0)', 'High Urgency (1)']))
 
-    # 8. Evaluation: Confusion Matrix
+    # 3. Evaluation: Confusion Matrix
     print("--- Confusion Matrix ---")
     cm = confusion_matrix(y_test, y_pred)
     print(cm)
-
-    # Visualizing the Confusion Matrix
-    fig, ax = plt.subplots(figsize=(8, 6))
-    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=['No Urgency', 'High Urgency'])
-    disp.plot(cmap='Blues', ax=ax)
-    plt.title("Confusion Matrix: COVID-19 Hospitalization Urgency")
-    plt.show()
-
-if __name__ == "__main__":
-    run_prediction_pipeline()
