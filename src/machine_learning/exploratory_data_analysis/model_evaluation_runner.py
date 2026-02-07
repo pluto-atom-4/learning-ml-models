@@ -1,8 +1,5 @@
 from sklearn.neighbors import KNeighborsClassifier
 
-#from model_evaluation import (    load_and_prepare_datasets, report_results )
-#from model_evaluation_viz import show_confusion_matrix_plot
-
 try:
     # When executed as part of the package
     from .model_evaluation import load_and_prepare_datasets, report_results
